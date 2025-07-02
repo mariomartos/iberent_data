@@ -3,20 +3,20 @@
 user_input:
   teradata_host: teradata
   teradata_user: user
-  teradata_password: password
+  teradata_password: 
   mysql_user: root
-  mysql_password: password
+  mysql_password: 
   mysql_host: localhost 
   mysql_database: mango
   oracle_username: '03767530'
-  oracle_password: P@ssw0rD!
+  oracle_password: 
   oracle_localhost: bdmng1p01-scan.intranet.mango.es
   oracle_orclpdb: scblp.intranet.mango.es
   oracle_pro_username: DELIVERY_TIMES
-  oracle_pro_password: xfSJYLHycngb2X6GEunE5vOMjusc8a
+  oracle_pro_password: 
   oracle_pro_localhost: bd.pro.mango.com
   oracle_pro_orclpdb: mango
   snowflake_user: user
-  snowflake_password: password
+  snowflake_password: 
   snowflake_host: fl98818.eu-west-1.snowflakecomputing.com 
   snowflake_account: fl98818
