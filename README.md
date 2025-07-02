@@ -5,31 +5,59 @@ múltiples origenes. La metodología de trabajo va a ser mediante dbt Core.
 
 ## Estructura inicial del repositorio
 
-.
-├── .gitignore               # Ignora artefactos de Python, dbt y configuraciones locales
-├── README.md                # Documentación de inicio y resumen de la arquitectura
-├── requirements.txt         # Dependencias Python para los pipelines de ingestión
-├── config/                  # Configuración y credenciales (no versionado)
-│   └── profiles.yml         # Conexión de dbt al data warehouse (incluido en .gitignore)
+
+iberent_data/
 │
-├── pipelines/               # Código de ingestión y carga de datos
-│   ├── extract/             # Scripts de extracción desde APIs, ficheros, etc.
-│   ├── load/                # Scripts para cargar datos al data warehouse
-│   └── dag/                 # Definición de DAGs (ej. Airflow) para orquestación
+├── .env
+├── .gitignore
+├── README.md
+├── requirements.txt
 │
-└── dbt/                     # Proyecto dbt Core para transformación de datos
-    ├── dbt_project.yml      # Configuración del proyecto dbt
-    ├── profiles.yml         # Enlazado a config/profiles.yml
+├── config/                       # profiles.yml para dbt
+│   └── profiles.yml
+│
+├── ingestion/                    # Parte de ingestión de datos (“fuentes”)
+│   ├── oracle/                   # Carpeta para Oracle
+│   │   ├── fetch_data.py
+│   │   └── __init__.py
+│   │
+│   ├── sqlserver/                # Carpeta para SQL Server
+│   │   ├── fetch_data.py
+│   │   └── __init__.py
+│   │
+│   ├── files/                    # Ejemplo: ficheros planos, FTP, etc.
+│   │   ├── fetch_csv.py
+│   │   └── __init__.py
+│   │
+│   └── load/                     # Carga genérica al warehouse
+│       ├── to_warehouse.py
+│       └── __init__.py
+│
+└── transform/                    # Parte de transformación (dbt Core)
+    ├── dbt_project.yml
+    ├── profiles.yml             # symlink o copia de ../config/profiles.yml
     ├── models/
-    │   ├── raw/             # Tablas/vistas con datos sin procesar
-    │   ├── staging/         # Formateo inicial: nomenclatura y tipos
-    │   ├── silver/          # Limpieza y enriquecimiento de datos
-    │   └── marts/           # Tablas de hechos y dimensiones finales
-    ├── snapshots/           # Versionado temporal de datos
-    ├── macros/              # Macros reutilizables de dbt
-    ├── seeds/               # Datos estáticos (CSV) cargados por dbt
-    ├── tests/               # Tests de calidad específicos
-    └── analyses/            # Consultas ad-hoc y análisis exploratorios
+    │   ├── strategy/            # Modelos para área “strategy”
+    │   │   ├── raw/             # (opcional) si quieres raw por área
+    │   │   ├── staging/
+    │   │   ├── silver/
+    │   │   └── marts/
+    │   │
+    │   ├── admin/               # Modelos para área “admin”
+    │   │   ├── staging/
+    │   │   ├── silver/
+    │   │   └── marts/
+    │   │
+    │   └── renove/              # Modelos para área “renove”
+    │       ├── staging/
+    │       ├── silver/
+    │       └── marts/
+    │
+    ├── snapshots/
+    ├── macros/
+    ├── seeds/
+    ├── tests/
+    └── analyses/
 
 ## Flujo de trabajo básico
 
