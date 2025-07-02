@@ -1,0 +1,61 @@
+# sql_variabes.yml corresponds to the default parameters that can be found in the stage SQL queries 
+# Those are always played if not overwritten by sql_variables_override.yml in the same folder
+
+payments:
+  payments_dates_from: "2021-01-01" 
+  payments_dates_to: "9999-12-31"
+leadtimes:
+  leadtimes_fechas_from: "2022-10-01" 
+  leadtimes_fechas_to: "2022-10-31"
+  
+  # text to type / example : "AND dtmdm.cod_tienda_mdm in (11821) -- Fiege"
+  leadtimes_tiendas: ""
+  
+  # text to type / example : "AND fpi.cod_pais_env in (52) -- Turquia"
+  # text to type / Inversos : "AND fpi.cod_pais_env in (647,632,480,708,700,680,728)"
+  # -- EMIRATOS ARABES UNIDOS, ARABIA SAUDI, COLOMBIA, FILIPINAS, INDONESIA, TAILANDIA, COREA DEL SUR"
+  leadtimes_cod_pais_envio: ""  
+  
+  # text to type / example : "AND fpi.cod_servicio_trans in ('TDA') -- Tienda"
+  leadtimes_cod_servicio_trans: ""
+  
+  # text to type / example : "AND fpi.cod_pedido_externo is null -- Mango"
+  # text to type / example : "AND fpi.cod_pedido_externo in ('ZAL') -- Zalando"
+  leadtimes_cod_pedido_externo: ""
+
+faltas_picking:
+  faltas_fechas_from: "2022-01-01" 
+  faltas_prendas_fechas_from: "2023-07-01" 
+  faltas_fechas_to: "2022-12-31"
+  faltas_tiendas: ""
+
+sabana:
+  sabana_fechas_from: "2022-11-01" 
+  sabana_fechas_to: "2025-03-29"
+
+# text to type / example : "AND fpi.cod_pais_env in (11) -- Francia"
+devoluciones: 
+  devoluciones_fechas_from: "2023-09-01" 
+  dev_pedidos_fechas_from: "2023-07-01"
+  devoluciones_fechas_to: "9999-01-01"
+  devos_cod_pais_envio: "AND fpi.cod_pais_env in (11)" 
+
+# SQL Variables that apply for models that can be re usable as customer segmentation
+generic:
+  generic_fechas_from: "2022-10-01" 
+  generic_fechas_to: "2022-10-31"
+  
+  # text to type / example : "AND dtmdm.cod_tienda_mdm in (11821) -- Fiege"
+  generic_tiendas: ""
+  
+  # text to type / example : "AND fpi.cod_pais_env in (52) -- Turquia"
+  # text to type / Inversos : "AND fpi.cod_pais_env in (647,632,480,708,700,680,728)"
+  # -- EMIRATOS ARABES UNIDOS, ARABIA SAUDI, COLOMBIA, FILIPINAS, INDONESIA, TAILANDIA, COREA DEL SUR"
+  generic_cod_pais_envio: ""  
+  
+  # text to type / example : "AND fpi.cod_servicio_trans in ('TDA') -- Tienda"
+  generic_cod_servicio_trans: ""
+  
+  # text to type / example : "AND fpi.cod_pedido_externo is null -- Mango"
+  # text to type / example : "AND fpi.cod_pedido_externo in ('ZAL') -- Zalando"
+  generic_cod_pedido_externo: ""
