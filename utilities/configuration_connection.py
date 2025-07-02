@@ -1,21 +1,57 @@
 from sqlalchemy import create_engine
-import teradatasql
-import oracledb
-import snowflake.connector 
-import sqlparse
-from datetime import datetime
+from urllib.parse import quote_plus
+
+def salesforce_connection(user_input: dict):
+    host     = user_input["salesforce_host"]
+    database = user_input["salesforce_database"]
+    driver   = user_input["salesforce_driver"]
+
+    extras = "&Encrypt=yes"
+    if user_input.get("salesforce_trust_cert", "no").lower() == "yes":
+        extras += "&TrustServerCertificate=yes"
+
+    # URL con Trusted_Connection=yes (Windows Authentication)
+    conn_url = (
+        f"mssql+pyodbc://@{host}/{database}"
+        f"?driver={driver}{extras}&Trusted_Connection=yes"
+    )
+
+    engine = create_engine(conn_url, fast_executemany=True)
+    conn   = engine.connect()
+    print("✅ Connection SQL Server – Salesforce_DB")
+    return conn
+
+def sgm_connection(user_input: dict):
+    host     = user_input["sgm_host"]
+    database = user_input["sgm_database"]
+    driver   = user_input["sgm_driver"]
+
+    extras = "&Encrypt=yes"
+    if user_input.get("sgm_trust_cert", "no").lower() == "yes":
+        extras += "&TrustServerCertificate=yes"
+
+    # URL con Trusted_Connection=yes (Windows Authentication)
+    conn_url = (
+        f"mssql+pyodbc://@{host}/{database}"
+        f"?driver={driver}{extras}&Trusted_Connection=yes"
+    )
+
+    engine = create_engine(conn_url, fast_executemany=True)
+    conn   = engine.connect()
+    print("✅ Connection SQL Server – SGM")
+    return conn
 
 
-def teradata_connection(user_input):
-    #Connection variables
-    user = user_input["teradata_user"]
-    password = user_input["teradata_password"]
-    host = user_input["teradata_host"]
-    
-    #Connection generation
-    teradata_connection = teradatasql.connect(host=host, user=user, password=password)                                   
-    print('Connection Teradata')
-    return teradata_connection
+
+
+
+
+
+
+
+
+
+
 
 def mango_mysql_connection(user_input):
     #Connection variables
@@ -29,6 +65,36 @@ def mango_mysql_connection(user_input):
     mango_mysql_conn = mango_mysql_engine.connect()
     print('Connection MySQL')
     return mango_mysql_conn
+
+def oracle_connection(user_input):
+    #Connection variables
+    user = user_input["oracle_username"]
+    password = user_input["oracle_password"]
+    host = user_input["oracle_localhost"]
+    oracle_orclpdb = user_input["oracle_orclpdb"]
+    
+    #Connection generation
+    oracle_connnection = oracledb.connect(user=user,
+                                          password=password, 
+                                          dsn=f"{host}/{oracle_orclpdb}")
+
+    print('Connection Oracle')
+    return oracle_connnection
+
+def oracle_mango_pro_connection(user_input):
+    #Connection variables
+    user = user_input["oracle_pro_username"]
+    password = user_input["oracle_pro_password"]
+    host = user_input["oracle_pro_localhost"]
+    oracle_orclpdb = user_input["oracle_pro_orclpdb"]
+    
+    #Connection generation
+    oracle_connnection = oracledb.connect(user=user,
+                                          password=password, 
+                                          dsn=f"{host}/{oracle_orclpdb}")
+
+    print('Connection Pro Oracle')
+    return oracle_connnection
 
 def play_sql_script(workspace,sql_path,connection):
     #Read file location
@@ -66,50 +132,3 @@ def play_sql_view_script(workspace,connection):
         
     end_time = datetime.now()
     print('Mango Views - Updated - Duration: {}'.format(end_time - start_time))
-
-def oracle_connection(user_input):
-    #Connection variables
-    user = user_input["oracle_username"]
-    password = user_input["oracle_password"]
-    host = user_input["oracle_localhost"]
-    oracle_orclpdb = user_input["oracle_orclpdb"]
-    
-    #Connection generation
-    oracle_connnection = oracledb.connect(user=user,
-                                          password=password, 
-                                          dsn=f"{host}/{oracle_orclpdb}")
-
-    print('Connection Oracle')
-    return oracle_connnection
-
-def oracle_mango_pro_connection(user_input):
-    #Connection variables
-    user = user_input["oracle_pro_username"]
-    password = user_input["oracle_pro_password"]
-    host = user_input["oracle_pro_localhost"]
-    oracle_orclpdb = user_input["oracle_pro_orclpdb"]
-    
-    #Connection generation
-    oracle_connnection = oracledb.connect(user=user,
-                                          password=password, 
-                                          dsn=f"{host}/{oracle_orclpdb}")
-
-    print('Connection Pro Oracle')
-    return oracle_connnection
-
-def snowflake_connection(user_input):
-    #Connection variables
-    user = user_input["snowflake_user"]
-    password = user_input["snowflake_password"]
-    host = user_input["snowflake_host"]
-    account = user_input["snowflake_account"]
-
-    #Connection generation
-    snowflake_connnection = snowflake.connector.connect(authenticator='externalbrowser',
-                                                        host=host, 
-                                                        user=user,
-                                                        password=password,
-                                                        account=account)
-
-    print('Connection Snowflake -- Will prompt a page login connection')
-    return snowflake_connnection
