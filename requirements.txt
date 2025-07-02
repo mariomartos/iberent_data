@@ -1,0 +1,5 @@
+dbt-core
+dbt-sqlserver
+python-dotenv
+pandas 
+pyodbc
