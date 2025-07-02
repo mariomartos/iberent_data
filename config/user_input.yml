@@ -1,10 +1,10 @@
 # user_input.yml corresponds to the default parameters that can be found in the stage SQL queries 
 # Those are always played if not overwritten by user_input_override.yml in the same folder
 user_input:
-  salesforce_host: 192.168.34.11
-  salesforce_user: datanalyst
-  salesforce_password: b2??3A£^02Ty
-  salesforce_database: Salesforce_DB
+  salesforce_host: 
+  salesforce_user: 
+  salesforce_password: 
+  salesforce_database: 
   oracle_host:
   oracle_user:
   oracle_password: 
