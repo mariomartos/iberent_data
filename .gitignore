@@ -12,6 +12,7 @@ __pycache__/
 *_test.txt
 
 #override_files
-sql_variables_override.yml
-user_input_override.yml
+*/sql_variables_override.yml
+*/user_input_override.yml
 
+X:\iberent_data\config\user_input.yml
