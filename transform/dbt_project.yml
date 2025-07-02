@@ -1,0 +1,31 @@
+name: 'iberent_data'
+version: '1.0'
+config-version: 2
+
+profile: 'my\_project'  # Coincide con el profile en config/profiles.yml
+
+# Directorios de dbt
+
+model-paths: \["models"]
+snapshot-paths: \["snapshots"]
+seed-paths: \["seeds"]
+macro-paths: \["macros"]
+analysis-paths: \["analyses"]
+target-path: "target"
+clean-targets: \["target", "dbt\_modules"]
+
+# Configuración de models por área
+
+models:
+strategy:
++schema: raw
++materialized: view
+admin:
++schema: raw
++materialized: view
+renove:
++schema: raw
++materialized: view
+finance:
++schema: raw
++materialized: view
