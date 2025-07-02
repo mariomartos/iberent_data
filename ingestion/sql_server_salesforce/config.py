@@ -13,15 +13,14 @@ SF_NAME    = os.getenv("SF_NAME")
 SF_DRIVER  = os.getenv("SF_DRIVER", "ODBC Driver 17 for SQL Server")
 RAW_SCHEMA = os.getenv("SF_SCHEMA", "raw")
 driver_param = SF_DRIVER.replace(" ", "+")
-ADAPTER_MSSQL = "mssql+pyoSFc"
+ADAPTER_MSSQL = "mssql+pyodbc"
 
 SF_CONN = (
     f"{ADAPTER_MSSQL}://{SF_USER}:{SF_PASS}"
     f"@{SF_HOST}:{SF_PORT}/{SF_NAME}"
     f"?driver={driver_param}"
 )
-source_engine = create_engine(SF_CONN)
-
+source_engine = create_engine(SF_CONN, fast_executemany=True)
 
 # Destino (SQL Server)
 DB_USER    = os.getenv("DB_USER")

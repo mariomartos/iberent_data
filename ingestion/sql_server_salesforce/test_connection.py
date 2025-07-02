@@ -1,5 +1,3 @@
-# ingestion/sql_server_salesforce/test_connection.py
-
 import os
 import sys
 import pandas as pd
