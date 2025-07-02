@@ -1,0 +1,17 @@
+#pycache_cases
+__pycache__/
+*.pyc
+*/__pycache__
+
+#python_test_files
+*_test.py 
+
+#overall test files
+*_test.csv
+*_test.sql
+*_test.txt
+
+#override_files
+sql_variables_override.yml
+user_input_override.yml
+
