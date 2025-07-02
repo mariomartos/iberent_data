@@ -1,2 +1,0 @@
-# sql_variabes.yml corresponds to the default parameters that can be found in the stage SQL queries 
-# Those are always played if not overwritten by sql_variables_override.yml in the same folder
