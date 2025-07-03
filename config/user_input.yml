@@ -14,7 +14,9 @@ user_input:
   oracle_database: "IBERICA"
   oracle_mode: thick
   oracle_lib_dir: "X:/oracle/instantclient-21.18"
-  studio_host:  
+  studio_host: "ibedata.database.windows.net" 
   studio_database: "ibeData"
   studio_user: 
   studio_password: 
+  studio_driver   : "ODBC Driver 17 for SQL Server" 
+  studio_trust_cert: "no" 
