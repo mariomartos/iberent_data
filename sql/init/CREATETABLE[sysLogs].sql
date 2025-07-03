@@ -3,9 +3,11 @@ CREATE TABLE [sysLogs] (
     [JobIb]            NVARCHAR(100)  NOT NULL,                      -- oracle_clientes, azure_contracts…
     [SourceConnection] NVARCHAR(100)  NULL,                          -- oracle, azure, sql34
     [TargetTable]      NVARCHAR(200)  NULL,                          -- stage.clientes
-    [StartTime]        DATETIME2      NOT NULL DEFAULT SYSUTCDATETIME(),
+    [Params]           NVARCHAR(max)  NULL,                          -- json to input filter params
+    [StartTime]        DATETIME2      NOT NULL,
     [EndTime]          DATETIME2      NULL,
     [Status]           NVARCHAR(20)   NULL,                          -- RUNNING / OK / ERROR
+    [Rows]             INT            NOT NULL,                        
     [ErrorMsg]         NVARCHAR(4000) NULL
     );
 GO
