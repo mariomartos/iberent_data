@@ -36,7 +36,7 @@ def connection_studio(user_input):
     print("✅ Conexión Data Studio")
     return conn
 
-def oracle_connection(user_input):
+def connection_oracle(user_input):
     oracledb.init_oracle_client(lib_dir=user_input["oracle_lib_dir"])
     
     dsn = oracledb.makedsn( user_input["oracle_host"],                
