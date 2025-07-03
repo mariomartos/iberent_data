@@ -1,21 +1,20 @@
 # user_input.yml corresponds to the default parameters that can be found in the stage SQL queries 
 # Those are always played if not overwritten by user_input_override.yml in the same folder
 user_input:
-  salesforce_host: "192.168.34.11,1433" 
-  salesforce_database: "Salesforce_DB"
-  salesforce_driver: "ODBC Driver 17 for SQL Server"
-  salesforce_auth: "windows"       
-  salesforce_trust_cert: "yes"
-  sgm_host: "192.168.34.11,1433" 
-  sgm_database: "SGM"
-  sgm_driver: "ODBC Driver 17 for SQL Server"
-  sgm_auth: "windows"       
-  sgm_trust_cert: "yes" 
+  sqlserver3411_host: "192.168.34.11,1433" 
+  sqlserver3411_database: "Salesforce_DB"
+  sqlserver3411_driver: "ODBC Driver 17 for SQL Server"
+  sqlserver3411_auth: "windows"       
+  sqlserver3411_trust_cert: "yes"
   oracle_host: "192.168.34.8"
   oracle_port: "1521"
-  oracle_user:
-  oracle_password:
+  oracle_user: 
+  oracle_password: 
   oracle_sid: "ORA10"
   oracle_database: "IBERICA"
   oracle_mode: thick
   oracle_lib_dir: "X:/oracle/instantclient-21.18"
+  studio_host:  
+  studio_database: "ibeData"
+  studio_user: 
+  studio_password: 
