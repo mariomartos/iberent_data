@@ -17,6 +17,25 @@ def connection_3411(user_input):
     print("✅ Conexión SQL Server 34.11")
     return conn
 
+def connection_studio(user_input):
+    host     = user_input["studio_host"]         # ibedata.database.windows.net
+    catalog  = user_input["studio_database"]     # IbeData
+    user     = user_input["studio_user"]
+    pwd      = quote_plus(user_input["studio_password"])
+    driver   = quote_plus(user_input["studio_driver"])
+
+    tail = "&Encrypt=yes"                       # Azure exige TLS
+    if user_input.get("studio_trust_cert", "no").lower() == "yes":
+        tail += "&TrustServerCertificate=yes"   # normalmente innecesario en Azure
+
+    conn_url = (
+        f"mssql+pyodbc://{user}:{pwd}@{host}/{catalog}"
+        f"?driver={driver}{tail}")
+
+    conn = create_engine(conn_url, fast_executemany=True).connect()
+    print("✅ Conexión Data Studio")
+    return conn
+
 def oracle_connection(user_input):
     oracledb.init_oracle_client(lib_dir=user_input["oracle_lib_dir"])
     
