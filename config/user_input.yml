@@ -6,7 +6,16 @@ user_input:
   salesforce_driver: "ODBC Driver 17 for SQL Server"
   salesforce_auth: "windows"       
   salesforce_trust_cert: "yes"
-  oracle_host:
+  sgm_host: "192.168.34.11,1433" 
+  sgm_database: "SGM"
+  sgm_driver: "ODBC Driver 17 for SQL Server"
+  sgm_auth: "windows"       
+  sgm_trust_cert: "yes" 
+  oracle_host: "192.168.34.8"
+  oracle_port: "1521"
   oracle_user:
-  oracle_password: 
-  oracle_database:
+  oracle_password:
+  oracle_sid: "ORA10"
+  oracle_database: "IBERICA"
+  oracle_mode: thick
+  oracle_lib_dir: "X:/oracle/instantclient-21.18"
