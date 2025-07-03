@@ -19,4 +19,4 @@ user_input:
   studio_user: 
   studio_password: 
   studio_driver   : "ODBC Driver 17 for SQL Server" 
-  azure_trust_cert: "no" 
+  studio_trust_cert: "no" 
