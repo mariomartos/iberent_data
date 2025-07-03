@@ -6,12 +6,12 @@ import sqlparse
 
 def connection_3411(user_input):
     tail = "&Encrypt=yes&Trusted_Connection=yes"
-    if user_input.get("salesforce_trust_cert", "no").lower() == "yes":
+    if user_input.get("sqlserver3411_trust_cert", "no").lower() == "yes":
         tail += "&TrustServerCertificate=yes"
 
     conn_url = (
-        f"mssql+pyodbc://@{user_input['salesforce_host']}/{user_input['salesforce_database']}"
-        f"?driver={quote_plus(user_input['salesforce_driver'])}{tail}")
+        f"mssql+pyodbc://@{user_input['sqlserver3411_host']}/{user_input['sqlserver3411_database']}"
+        f"?driver={quote_plus(user_input['sqlserver3411_driver'])}{tail}")
 
     conn = create_engine(conn_url, fast_executemany=True).connect()
     print("✅ Conexión SQL Server 34.11")
